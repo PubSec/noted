@@ -56,7 +56,7 @@ void main() {
       provider.sendEmailVerification();
       final user = provider.currentUser;
       expect(user, isNotNull);
-      expect(user!.isEmailVerified, false);
+      expect(user!.isEmailVerified, true);
     });
     test('Should be able to login and log out', () async {
       await provider.logOut();

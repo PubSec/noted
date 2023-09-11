@@ -17,7 +17,7 @@ class _NotedViewState extends State<NotedView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Main UI'),
+        title: const Text('My Notes'),
         backgroundColor: Colors.amber,
         actions: [
           PopupMenuButton<MenuAction>(
@@ -37,7 +37,9 @@ class _NotedViewState extends State<NotedView> {
             itemBuilder: (context) {
               return const [
                 PopupMenuItem<MenuAction>(
-                    value: MenuAction.logout, child: Text('Logout'))
+                  value: MenuAction.logout,
+                  child: Text('Logout'),
+                )
               ];
             },
           )
