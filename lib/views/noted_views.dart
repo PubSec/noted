@@ -71,7 +71,7 @@ class _NotedViewState extends State<NotedView> {
                 builder: (context, snapshot) {
                   switch (snapshot.connectionState) {
                     case ConnectionState.waiting:
-                      return const Text('Wainting for all your notes');
+                      return const Text('Waiting for all your notes...');
                     default:
                       return const CircularProgressIndicator.adaptive();
                   }
