@@ -36,6 +36,12 @@ class _NotedViewState extends State<NotedView> {
         title: const Text('My Notes'),
         backgroundColor: Colors.amber,
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(newNotesRoute);
+            },
+            icon: const Icon(Icons.add),
+          ),
           PopupMenuButton<MenuAction>(
             onSelected: (value) async {
               switch (value) {
