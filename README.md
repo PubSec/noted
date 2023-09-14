@@ -1,7 +1,7 @@
 # noted
 
 A new Flutter project.
-https://mega.nz/folder/2xcB2ALS#fevgweRRorw83Htqi4r09Q/folder/3k8HEQjI
+
 
 ## Getting Started
 
