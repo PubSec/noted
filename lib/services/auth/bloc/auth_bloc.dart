@@ -3,6 +3,7 @@ import 'package:noted/services/auth/auth_provider.dart';
 import 'package:noted/services/auth/bloc/auth_event.dart';
 import 'package:noted/services/auth/bloc/auth_state.dart';
 
+// check the documentation.
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(AuthProvider provider) : super(const AuthStateLoading()) {
     // initialize
