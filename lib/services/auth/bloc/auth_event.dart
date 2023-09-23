@@ -10,7 +10,7 @@ class AuthEventInitialize extends AuthEvent {
   const AuthEventInitialize();
 }
 
-// Vandad set the password type to String but i didn't but i don't think it would make any difference
+// Vandad set the password type to String but i don't think it would make any difference
 // email and password are needed to login of course. made a constructor for them too.
 class AuthEventLogIn extends AuthEvent {
   final String email;
@@ -18,6 +18,7 @@ class AuthEventLogIn extends AuthEvent {
   const AuthEventLogIn(this.email, this.password);
 }
 
+// nothing is required to logout
 class AuthEventLogOut extends AuthEvent {
   const AuthEventLogOut();
 }
