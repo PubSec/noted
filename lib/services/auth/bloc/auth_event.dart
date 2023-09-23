@@ -14,8 +14,23 @@ class AuthEventInitialize extends AuthEvent {
 // email and password are needed to login of course. made a constructor for them too.
 class AuthEventLogIn extends AuthEvent {
   final String email;
-  final dynamic password;
+  final String password;
   const AuthEventLogIn(this.email, this.password);
+}
+
+class AuthEventSendEmailVerification extends AuthEvent {
+  const AuthEventSendEmailVerification();
+}
+
+// Vandad didnt add a required
+class AuthEventRegister extends AuthEvent {
+  final String email;
+  final String passowrd;
+  const AuthEventRegister({required this.email, required this.passowrd});
+}
+
+class AuthEventShouldRegister extends AuthEvent {
+  const AuthEventShouldRegister();
 }
 
 // nothing is required to logout
