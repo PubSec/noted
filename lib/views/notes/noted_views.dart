@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
 import 'package:noted/constants/routes.dart';
@@ -76,7 +74,8 @@ class _NotedViewState extends State<NotedView> {
                 return NotesListView(
                   notes: allNotes,
                   onDeleteNote: (note) async {
-                    await _notesServices.deleteNote(documentId: userId);
+                    await _notesServices.deleteNote(
+                        documentId: note.documentId);
                   },
                   onTap: (notes) {
                     Navigator.of(context).pushNamed(
