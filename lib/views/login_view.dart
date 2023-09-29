@@ -48,7 +48,7 @@ class _LoginViewState extends State<LoginView> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
-          backgroundColor: Colors.amberAccent,
+          backgroundColor: Colors.amber,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
