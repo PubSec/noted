@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:noted/constants/text_style.dart';
 import 'package:noted/services/auth/auth_service.dart';
 import 'package:noted/utilities/dialogs/cannot_share_empty_note_dialog.dart';
 import 'package:noted/utilities/generics/get_arguments.dart';
 import 'package:noted/services/cloud/cloud_note.dart';
-// import 'package:noted/services/cloud/cloud_storage_exceptions.dart';
 import 'package:noted/services/cloud/firebase_cloud_storage.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -90,7 +90,15 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Notes'),
+        title: Text(
+          'New Notes',
+          style: textStyle(
+            family: akira,
+            size: 30,
+            color: Colors.black.withAlpha(200),
+          ),
+        ),
+        centerTitle: true,
         actions: [
           IconButton(
               onPressed: () async {
@@ -105,25 +113,29 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
         ],
       ),
       body: FutureBuilder(
-          future: createOrGetExistingNote(context),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.done:
-                _note = snapshot.data;
-                _setupTextControllerListener();
-                return TextField(
-                  controller: _textControllor,
-                  keyboardType: TextInputType.multiline,
-                  autofocus: true,
-                  maxLines: null,
-                  decoration: const InputDecoration(
-                    hintText: 'Input your note here...',
-                  ),
-                );
-              default:
-                return const Center(child: CircularProgressIndicator());
-            }
-          }),
+        future: createOrGetExistingNote(context),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.done:
+              _note = snapshot.data;
+              _setupTextControllerListener();
+              return TextField(
+                style: textStyle(
+                    family: coolveticaCrammedRg, color: null, size: 20),
+                controller: _textControllor,
+                keyboardType: TextInputType.multiline,
+                autofocus: true,
+                maxLines: null,
+                decoration: InputDecoration(
+                  hintText: 'Input your note here...',
+                  hintStyle: textStyle(color: null),
+                ),
+              );
+            default:
+              return const Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
     );
   }
 }

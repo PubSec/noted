@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
 import 'package:noted/constants/routes.dart';
+import 'package:noted/constants/text_style.dart';
 import 'package:noted/enums/menu_action.dart';
 import 'package:noted/services/auth/auth_service.dart';
 import 'package:noted/services/auth/bloc/auth_bloc.dart';
@@ -33,8 +34,16 @@ class _NotedViewState extends State<NotedView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Notes'),
+        title: Text(
+          'My Notes',
+          style: textStyle(
+            family: akira,
+            size: 30,
+            color: Colors.black.withAlpha(200),
+          ),
+        ),
         backgroundColor: Colors.amber,
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
@@ -55,10 +64,13 @@ class _NotedViewState extends State<NotedView> {
               }
             },
             itemBuilder: (context) {
-              return const [
+              return [
                 PopupMenuItem<MenuAction>(
                   value: MenuAction.logout,
-                  child: Text('Logout'),
+                  child: Text(
+                    'Logout',
+                    style: textStyle(color: Colors.blue),
+                  ),
                 )
               ];
             },

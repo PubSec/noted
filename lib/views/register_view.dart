@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noted/constants/mycolors.dart';
+import 'package:noted/constants/text_style.dart';
 import 'package:noted/services/auth/auth_exceptions.dart';
 import 'package:noted/services/auth/bloc/auth_bloc.dart';
 import 'package:noted/services/auth/bloc/auth_event.dart';
@@ -49,8 +51,16 @@ class _RegisterViewState extends State<RegisterView> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Register'),
+          title: Text(
+            'Register',
+            style: textStyle(
+              family: akira,
+              size: 30,
+              color: Colors.black.withAlpha(200),
+            ),
+          ),
           backgroundColor: Colors.amber,
+          centerTitle: true,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -58,25 +68,31 @@ class _RegisterViewState extends State<RegisterView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                    'Enter email and password to start creating your notes.'),
+                Text(
+                  'Enter email and password to start creating your notes.',
+                  style: textStyle(),
+                ),
                 TextField(
+                  style: textStyle(),
                   enableSuggestions: false,
                   autocorrect: false,
                   autofocus: true,
                   keyboardType: TextInputType.emailAddress,
                   controller: _email,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Enter your email here',
+                    hintStyle: textStyle(size: 10, color: bgColor),
                   ),
                 ),
                 TextField(
+                  style: textStyle(),
                   controller: _password,
                   obscureText: true,
                   autocorrect: false,
                   enableSuggestions: false,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Enter your password here',
+                    hintStyle: textStyle(size: 10, color: bgColor),
                   ),
                 ),
                 Column(
@@ -91,7 +107,10 @@ class _RegisterViewState extends State<RegisterView> {
                                     email: email, passowrd: password),
                               );
                         },
-                        child: const Text('Register'),
+                        child: Text(
+                          'Register',
+                          style: textStyle(color: null),
+                        ),
                       ),
                     ),
                     Center(
@@ -101,8 +120,9 @@ class _RegisterViewState extends State<RegisterView> {
                                 const AuthEventLogOut(),
                               );
                         },
-                        child: const Text(
+                        child: Text(
                           'Already registered? Login here!',
+                          style: textStyle(color: null),
                         ),
                       ),
                     )
