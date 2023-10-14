@@ -34,12 +34,17 @@ class _NotedViewState extends State<NotedView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 50,
+        leading: const Icon(
+          Icons.snowing,
+          size: 30,
+        ),
         title: Text(
           'My Notes',
           style: textStyle(
             family: akira,
-            size: 30,
-            color: Colors.black.withAlpha(200),
+            size: 23,
+            color: Colors.transparent,
           ),
         ),
         backgroundColor: Colors.amber,

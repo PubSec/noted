@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noted/constants/mycolors.dart';
 import 'package:noted/constants/routes.dart';
 import 'package:noted/helpers/loading/loading_screen.dart';
 import 'package:noted/services/auth/bloc/auth_bloc.dart';
@@ -18,7 +19,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Noted',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
@@ -54,6 +55,7 @@ class HomePage extends StatelessWidget {
           return const ForgotPasswordView();
         } else {
           return const Scaffold(
+            backgroundColor: bgColor,
             body: Center(child: CircularProgressIndicator()),
           );
         }

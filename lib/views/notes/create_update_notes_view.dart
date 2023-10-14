@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noted/constants/mycolors.dart';
 import 'package:noted/constants/text_style.dart';
 import 'package:noted/services/auth/auth_service.dart';
 import 'package:noted/utilities/dialogs/cannot_share_empty_note_dialog.dart';
@@ -94,8 +95,8 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
           'New Notes',
           style: textStyle(
             family: akira,
-            size: 30,
-            color: Colors.black.withAlpha(200),
+            size: 23,
+            color: Colors.transparent,
           ),
         ),
         centerTitle: true,
@@ -121,7 +122,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
               _setupTextControllerListener();
               return TextField(
                 style: textStyle(
-                    family: coolveticaCrammedRg, color: null, size: 20),
+                    family: coolveticaCrammedRg, color: bgColor, size: 17),
                 controller: _textControllor,
                 keyboardType: TextInputType.multiline,
                 autofocus: true,
