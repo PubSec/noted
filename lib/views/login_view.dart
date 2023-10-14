@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:noted/constants/containershape.dart';
 import 'package:noted/constants/mycolors.dart';
 import 'package:noted/constants/sized_box.dart';
@@ -26,6 +27,7 @@ class _LoginViewState extends State<LoginView> {
     _email = TextEditingController();
     _password = TextEditingController();
     super.initState();
+    FlutterNativeSplash.remove();
   }
 
   @override

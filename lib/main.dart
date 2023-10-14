@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:noted/constants/mycolors.dart';
 import 'package:noted/constants/routes.dart';
 import 'package:noted/helpers/loading/loading_screen.dart';
@@ -16,6 +17,8 @@ import 'package:noted/views/verify_email_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
