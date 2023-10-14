@@ -93,11 +93,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
       appBar: AppBar(
         title: Text(
           'New Notes',
-          style: textStyle(
-            family: akira,
-            size: 23,
-            color: Colors.transparent,
-          ),
+          style: textStyle(family: akira, size: 23, color: bgColor),
         ),
         centerTitle: true,
         actions: [
@@ -121,15 +117,16 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
               _note = snapshot.data;
               _setupTextControllerListener();
               return TextField(
-                style: textStyle(
-                    family: coolveticaCrammedRg, color: bgColor, size: 17),
+                style: textStyle(family: coolvetica, color: bgColor, size: 17),
                 controller: _textControllor,
                 keyboardType: TextInputType.multiline,
                 autofocus: true,
                 maxLines: null,
                 decoration: InputDecoration(
                   hintText: 'Input your note here...',
-                  hintStyle: textStyle(color: null),
+                  hintStyle: textStyle(
+                    color: null,
+                  ),
                 ),
               );
             default:

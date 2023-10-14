@@ -55,10 +55,9 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
             style: textStyle(
               family: akira,
               size: 23,
-              color: Colors.transparent,
             ),
           ),
-          backgroundColor: bgColor,
+          backgroundColor: Colors.transparent,
           centerTitle: true,
         ),
         body: Padding(

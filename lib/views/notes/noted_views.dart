@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
+import 'package:noted/constants/mycolors.dart';
 import 'package:noted/constants/routes.dart';
 import 'package:noted/constants/text_style.dart';
 import 'package:noted/enums/menu_action.dart';
@@ -33,30 +34,35 @@ class _NotedViewState extends State<NotedView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: containercolor,
       appBar: AppBar(
         toolbarHeight: 50,
         leading: const Icon(
           Icons.snowing,
           size: 30,
+          color: whiteColor,
         ),
         title: Text(
           'My Notes',
           style: textStyle(
             family: akira,
             size: 23,
-            color: Colors.transparent,
           ),
         ),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.transparent,
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
-            },
-            icon: const Icon(Icons.add),
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
+          //   },
+          //   icon: const Icon(
+          //     Icons.add,
+          //     color: whiteColor,
+          //   ),
+          // ),
           PopupMenuButton<MenuAction>(
+            color: whiteColor,
             onSelected: (value) async {
               switch (value) {
                 case MenuAction.logout:
@@ -82,34 +88,52 @@ class _NotedViewState extends State<NotedView> {
           )
         ],
       ),
-      body: StreamBuilder(
-        stream: _notesServices.allNotes(ownerUserId: userId),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-            case ConnectionState.active:
-              if (snapshot.hasData) {
-                final allNotes = snapshot.data as Iterable<CloudNote>;
-                return NotesListView(
-                  notes: allNotes,
-                  onDeleteNote: (note) async {
-                    await _notesServices.deleteNote(
-                        documentId: note.documentId);
-                  },
-                  onTap: (notes) {
-                    Navigator.of(context).pushNamed(
-                      createOrUpdateNoteRoute,
-                      arguments: notes,
-                    );
-                  },
-                );
-              } else {
+      body: Container(
+        color: whiteColor,
+        child: StreamBuilder(
+          stream: _notesServices.allNotes(ownerUserId: userId),
+          builder: (context, snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+              case ConnectionState.active:
+                if (snapshot.hasData) {
+                  final allNotes = snapshot.data as Iterable<CloudNote>;
+                  return NotesListView(
+                    notes: allNotes,
+                    onDeleteNote: (note) async {
+                      await _notesServices.deleteNote(
+                          documentId: note.documentId);
+                    },
+                    onTap: (notes) {
+                      Navigator.of(context).pushNamed(
+                        createOrUpdateNoteRoute,
+                        arguments: notes,
+                      );
+                    },
+                  );
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              default:
                 return const Center(child: CircularProgressIndicator());
-              }
-            default:
-              return const Center(child: CircularProgressIndicator());
-          }
+            }
+          },
+        ),
+      ),
+      floatingActionButton: IconButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
         },
+        icon: const CircleAvatar(
+          minRadius: 30,
+          maxRadius: 30,
+          backgroundColor: containercolor,
+          child: Icon(
+            Icons.add_rounded,
+            color: whiteColor,
+            size: 60,
+          ),
+        ),
       ),
     );
   }
