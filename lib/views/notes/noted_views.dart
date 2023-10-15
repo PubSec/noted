@@ -11,7 +11,6 @@ import 'package:noted/services/auth/bloc/auth_bloc.dart';
 import 'package:noted/services/auth/bloc/auth_event.dart';
 import 'package:noted/services/cloud/cloud_note.dart';
 import 'package:noted/services/cloud/firebase_cloud_storage.dart';
-import 'package:noted/utilities/dialogs/generic_dialogs.dart';
 import 'package:noted/utilities/dialogs/logout_dialog.dart';
 import 'package:noted/views/notes/notes_list_view.dart';
 
@@ -55,14 +54,18 @@ class _NotedViewState extends State<NotedView> {
         actions: [
           IconButton(
             onPressed: () {
-              showGenericDialog(
+              showDialog(
+                builder: (_) => const AlertDialog(
+                  title: SelectableText('Buy Me Coffee'),
+                  content: Text(
+                    '''Please buy me a coffee here: 
+            https://www.buymeacoffee.com/notedapp''',
+                  ),
+                  icon: Icon(Icons.thumb_up_outlined),
+                  actions: [],
+                ),
                 context: context,
-                title: 'Buy Me Coffee',
-                content:
-                    'Please buy me a coffee here https://www.buymeacoffee.com/notedapp',
-                optionBuilder: () => {
-                  'OK': null,
-                },
+                barrierDismissible: true,
               );
             },
             icon: const Icon(
