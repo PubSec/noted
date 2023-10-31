@@ -11,6 +11,9 @@ class EmailAlreadyInUseAuthException implements Exception {}
 
 class InvalidEmailAuthException implements Exception {}
 
+//anon signin expections
+class CouldSignInAnonymously implements Exception {}
+
 // generic exceptions
 class GenericAuthException implements Exception {}
 

@@ -150,4 +150,10 @@ class MockAuthProvider implements AuthProvider {
   Future<void> sendPasswordReset({required String toEmail}) {
     throw UnimplementedError();
   }
+
+// fix this
+  @override
+  Future<void> signInAnon() {
+    throw UnimplementedError();
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noted/services/auth/auth_exceptions.dart';
 import 'package:noted/services/auth/auth_provider.dart';
 import 'package:noted/services/auth/bloc/auth_event.dart';
 import 'package:noted/services/auth/bloc/auth_state.dart';
@@ -84,7 +85,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               isLoading: false,
             ),
           );
-        } else if (!user.isEmailVerified) {
+        } else if (!user.isEmailVerified!) {
           emit(const AuthStateNeedsVerification(isLoading: false));
         } else {
           emit(AuthStateLoggedIn(
@@ -111,7 +112,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             email: email,
             password: password,
           );
-          if (!user.isEmailVerified) {
+          if (!user.isEmailVerified!) {
             emit(
               const AuthStateLoggedOut(
                 exception: null,
@@ -138,23 +139,38 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
     );
     //log out
-    on<AuthEventLogOut>((event, emit) async {
-      try {
-        await provider.logOut();
-        emit(
-          const AuthStateLoggedOut(
+    on<AuthEventLogOut>(
+      (event, emit) async {
+        try {
+          await provider.logOut();
+          emit(
+            const AuthStateLoggedOut(
+              exception: null,
+              isLoading: false,
+            ),
+          );
+        } on Exception catch (e) {
+          emit(
+            AuthStateLoggedOut(
+              exception: e,
+              isLoading: false,
+            ),
+          );
+        }
+      },
+    );
+    on<AuthEventAnonSignIn>(
+      (event, emit) async {
+        try {
+          await provider.signInAnon();
+          emit(const AuthStateAnonySignIn(
             exception: null,
             isLoading: false,
-          ),
-        );
-      } on Exception catch (e) {
-        emit(
-          AuthStateLoggedOut(
-            exception: e,
-            isLoading: false,
-          ),
-        );
-      }
-    });
+          ));
+        } on Exception catch (_) {
+          throw GenericAuthException();
+        }
+      },
+    );
   }
 }

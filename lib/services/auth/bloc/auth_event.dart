@@ -42,3 +42,8 @@ class AuthEventForgotPassword extends AuthEvent {
 class AuthEventLogOut extends AuthEvent {
   const AuthEventLogOut();
 }
+
+// nothing is required to log in anony
+class AuthEventAnonSignIn extends AuthEvent {
+  const AuthEventAnonSignIn();
+}

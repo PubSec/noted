@@ -122,4 +122,18 @@ class FirebaseAuthProvider implements AuthProvider {
       throw GenericAuthException();
     }
   }
+
+  @override
+  Future<void> signInAnon() async {
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'firebase_auth/operation-not-allowed':
+          throw CouldSignInAnonymously();
+        default:
+          throw GenericAuthException();
+      }
+    }
+  }
 }

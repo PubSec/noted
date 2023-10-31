@@ -64,3 +64,16 @@ class AuthStateLoggedOut extends AuthState with EquatableMixin {
   @override
   List<Object?> get props => [exception, isLoading];
 }
+
+// anonymous sign in
+class AuthStateAnonySignIn extends AuthState {
+  final Exception? exception;
+  const AuthStateAnonySignIn({
+    required this.exception,
+    required bool isLoading,
+    String? loadingText,
+  }) : super(
+          isLoading: isLoading,
+          loadingText: loadingText,
+        );
+}

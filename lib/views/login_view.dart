@@ -156,6 +156,17 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                   ),
+                  TextButton(
+                    onPressed: () async {
+                      context.read<AuthBloc>().add(
+                            const AuthEventAnonSignIn(),
+                          );
+                    },
+                    child: Text(
+                      'Sign In without email',
+                      style: textStyle(color: null),
+                    ),
+                  ),
                 ],
               ),
             ),
